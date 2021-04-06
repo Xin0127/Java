@@ -1,0 +1,369 @@
+mysql> use bite0330;
+Database changed
+mysql> desc student;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int(11)     | YES  |     | NULL    |       |
+| name   | varchar(50) | YES  |     | NULL    |       |
+| gender | varchar(10) | YES  |     | NULL    |       |
+| phone  | varchar(20) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.03 sec)
+
+mysql> desc exam_result;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | YES  |     | NULL    |       |
+| name    | varchar(50)  | YES  |     | NULL    |       |
+| chinese | decimal(3,1) | YES  |     | NULL    |       |
+| math    | decimal(3,1) | YES  |     | NULL    |       |
+| english | decimal(3,1) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.04 sec)
+
+mysql> select * from exam_result;
++------+-------------+---------+------+---------+
+| id   | name        | chinese | math | english |
++------+-------------+---------+------+---------+
+|    1 | tangsanzang |    67.0 | 98.0 |    56.0 |
+|    2 | sunwukong   |    95.5 | 78.0 |    77.0 |
+|    3 | zhubajie    |    88.0 | 98.0 |    90.0 |
+|    4 | shaheshang  |    50.0 | 45.5 |    76.0 |
+|    5 | caocao      |    80.0 | 78.5 |    79.0 |
+|    6 | liubei      |    78.0 | 65.0 |    54.0 |
+|    7 | sunquan     |    67.0 | 34.0 |    90.0 |
+|  100 | bailongma   |    NULL | NULL |    NULL |
++------+-------------+---------+------+---------+
+8 rows in set (0.01 sec)
+
+mysql> update exam_result set math=76 where name='tangsanzang';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from exam_result;
++------+-------------+---------+------+---------+
+| id   | name        | chinese | math | english |
++------+-------------+---------+------+---------+
+|    1 | tangsanzang |    67.0 | 76.0 |    56.0 |
+|    2 | sunwukong   |    95.5 | 78.0 |    77.0 |
+|    3 | zhubajie    |    88.0 | 98.0 |    90.0 |
+|    4 | shaheshang  |    50.0 | 45.5 |    76.0 |
+|    5 | caocao      |    80.0 | 78.5 |    79.0 |
+|    6 | liubei      |    78.0 | 65.0 |    54.0 |
+|    7 | sunquan     |    67.0 | 34.0 |    90.0 |
+|  100 | bailongma   |    NULL | NULL |    NULL |
++------+-------------+---------+------+---------+
+8 rows in set (0.00 sec)
+
+mysql> select * from student;
++------+---------+--------+------------------+
+| id   | name    | gender | phone            |
++------+---------+--------+------------------+
+|  100 | chenxin | xxx    | 123456           |
+|  100 | chenxin | xxx    | NULL             |
+|  102 | sss     | xian   | NULL             |
+|  104 | aaa     | bbb    | 815396504@qq.com |
+|  105 | ccc     | ddd    | 123456789        |
+|   11 | vvv     | ds     | 12348999795      |
++------+---------+--------+------------------+
+6 rows in set (0.00 sec)
+
+mysql> update student set name='xzg' where phone='123456';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++------+---------+--------+------------------+
+| id   | name    | gender | phone            |
++------+---------+--------+------------------+
+|  100 | xzg     | xxx    | 123456           |
+|  100 | chenxin | xxx    | NULL             |
+|  102 | sss     | xian   | NULL             |
+|  104 | aaa     | bbb    | 815396504@qq.com |
+|  105 | ccc     | ddd    | 123456789        |
+|   11 | vvv     | ds     | 12348999795      |
++------+---------+--------+------------------+
+6 rows in set (0.00 sec)
+
+mysql> update student set gender='wjjw',id=103 where name='xzg';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++------+---------+--------+------------------+
+| id   | name    | gender | phone            |
++------+---------+--------+------------------+
+|  103 | xzg     | wjjw   | 123456           |
+|  100 | chenxin | xxx    | NULL             |
+|  102 | sss     | xian   | NULL             |
+|  104 | aaa     | bbb    | 815396504@qq.com |
+|  105 | ccc     | ddd    | 123456789        |
+|   11 | vvv     | ds     | 12348999795      |
++------+---------+--------+------------------+
+6 rows in set (0.00 sec)
+
+mysql> drop table student;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> creat table student(id int not null,name varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'creat table student(id int not null,name varchar(20))' at line 1
+mysql> create table student(id int not null,name varchar(20));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> drop table student;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table student(id int not null,name varchar(20) unique);
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | NO   |     | NULL    |       |
+| name  | varchar(20) | YES  | UNI | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into student values(1,'aaa');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(1,'aaa');
+ERROR 1062 (23000): Duplicate entry 'aaa' for key 'name'
+mysql> insert into student values(2,'bbb');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> desc student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | NO   |     | NULL    |       |
+| name  | varchar(20) | YES  | UNI | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student;
++----+------+
+| id | name |
++----+------+
+|  1 | aaa  |
+|  2 | bbb  |
++----+------+
+2 rows in set (0.00 sec)
+
+mysql> drop table student;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table student(id int not null,name varchar(20) 'unkown');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''unkown')' at line 1
+mysql> create table student(id int not null,name varchar(20) default 'unkown');
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | NO   |     | NULL    |       |
+| name  | varchar(20) | YES  |     | unkown  |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> insert into student (id) values(2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++----+--------+
+| id | name   |
++----+--------+
+|  2 | unkown |
++----+--------+
+1 row in set (0.00 sec)
+
+mysql> create table student(id int not null primary key,name varchar(20));
+ERROR 1050 (42S01): Table 'student' already exists
+mysql> drop table student;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table student(id int not null primary key,name varchar(20));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into student values(1,'aaa');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(1,'aaa');
+ERROR 1062 (23000): Duplicate entry '1' for key 'PRIMARY'
+mysql> drop table student;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table student(id int primary key,name varchar(20));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table student(id int primary key,name varchar(20) primary key);
+ERROR 1068 (42000): Multiple primary key defined
+mysql> drop table student;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table student (id int primary key
+    -> auto_increment,name varchar(20));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc student;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(20) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.01 sec)
+
+mysql> insert into student values(null,'aaa');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into student values(null,'aaa');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(null,'aaa');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(null,'aaa');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values(null,'aaa');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from student;
++----+------+
+| id | name |
++----+------+
+|  1 | aaa  |
+|  2 | aaa  |
+|  3 | aaa  |
+|  4 | aaa  |
+|  5 | aaa  |
++----+------+
+5 rows in set (0.00 sec)
+
+mysql> insert into student values(100,'aaa');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(null,'aaa');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++-----+------+
+| id  | name |
++-----+------+
+|   1 | aaa  |
+|   2 | aaa  |
+|   3 | aaa  |
+|   4 | aaa  |
+|   5 | aaa  |
+| 100 | aaa  |
+| 101 | aaa  |
++-----+------+
+7 rows in set (0.00 sec)
+
+mysql> create table class(id int,name varchar(20));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table student(
+    -> id int primary key,
+    -> name varchar(20),
+    -> classId int,
+    -> foreign key(classId) references class(id));
+ERROR 1050 (42S01): Table 'student' already exists
+mysql>  create table student(
+    ->     -> id int primary key,
+    ->     -> name varchar(20),
+    ->     -> classId int,
+    ->     -> foreign key(classId) references class(id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-> id int primary key,
+    -> name varchar(20),
+    -> classId int,
+    -> forei' at line 2
+mysql> create table class(
+    -> id int primary key,
+    ->     -> name varchar(20),
+    ->     -> classId int,
+    ->     -> foreign key(classId) references class(id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-> name varchar(20),
+    -> classId int,
+    -> foreign key(classId) references ' at line 3
+mysql> drop table student;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table student(
+    -> id int primary key,
+    -> name varchar(20),
+    -> classId int,
+    -> foreign key(classId) references class(id));
+ERROR 1215 (HY000): Cannot add foreign key constraint
+mysql> drop table class;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table class(id int primary key,name varchar(20));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> drop table student;
+ERROR 1051 (42S02): Unknown table 'bite0330.student'
+mysql> create table student(
+    ->
+    -> id int primary key,
+    -> name varchar(20),
+    -> classId int,
+    -> foreign key(classId) references class(id));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into student values(1,'aaa',1);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`bite0330`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`classId`) REFERENCES `class` (`id`))
+mysql> select * from class;
+Empty set (0.00 sec)
+
+mysql> insert into class values(1,'java41');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into class values(2,'java42');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(1,'aaa',1);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into student values(2,'bbb',2);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into student values(2,'bbb',3);
+ERROR 1062 (23000): Duplicate entry '2' for key 'PRIMARY'
+mysql> select * from student;
++----+------+---------+
+| id | name | classId |
++----+------+---------+
+|  1 | aaa  |       1 |
+|  2 | bbb  |       2 |
++----+------+---------+
+2 rows in set (0.01 sec)
+
+mysql> delete from class where id=1;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`bite0330`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`classId`) REFERENCES `class` (`id`))
+mysql> delete from student where id=1;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> delete from class where id=1;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from class;
++----+--------+
+| id | name   |
++----+--------+
+|  2 | java42 |
++----+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from student;
++----+------+---------+
+| id | name | classId |
++----+------+---------+
+|  2 | bbb  |       2 |
++----+------+---------+
+1 row in set (0.00 sec)
