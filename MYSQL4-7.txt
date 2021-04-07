@@ -1,0 +1,55 @@
+mysql> create table user(id int,name varchar(20));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into user values(1,'aaa');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into user values(2,'aaa');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into user values(3,'aaa');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into user values(4,'aaa');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> create table user2(id int,name varchar(20));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into user2 values(id,name)
+    -> select id,name from user;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select id,name from user' at line 2
+mysql> insert into user2 values(id,name)
+    -> select id,name from user;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select id,name from user' at line 2
+mysql> insert into user2 (id,name)
+    -> select id,name from user;
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from user;
++------+------+
+| id   | name |
++------+------+
+|    1 | aaa  |
+|    2 | aaa  |
+|    3 | aaa  |
+|    4 | aaa  |
++------+------+
+4 rows in set (0.00 sec)
+
+mysql> select count(*)from user;
++----------+
+| count(*) |
++----------+
+|        4 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> select count(id) from user;
++-----------+
+| count(id) |
++-----------+
+|         4 |
++-----------+
+1 row in set (0.00 sec)
