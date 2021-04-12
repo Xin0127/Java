@@ -1,0 +1,747 @@
+mysql> use bite0330;
+Database changed
+mysql> create table book(name varchar(50),writer varchar(20),price decimal(7,2),kind varchar(20));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select * from book;
+Empty set (0.00 sec)
+
+mysql> show book;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'book' at line 1
+mysql> show tables;
++--------------------+
+| Tables_in_bite0330 |
++--------------------+
+| book               |
+| class              |
+| classes            |
+| course             |
+| emp                |
+| exam_result        |
+| score              |
+| student            |
+| user               |
+| user2              |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> desc book;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| name   | varchar(50)  | YES  |     | NULL    |       |
+| writer | varchar(20)  | YES  |     | NULL    |       |
+| price  | decimal(7,2) | YES  |     | NULL    |       |
+| kind   | varchar(20)  | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> create teacher(name varchar(20),age int,height int,weight int,sex varchar(5),education varchar(50),birthday varchar(20),ID number varchar(30));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'teacher(name varchar(20),age int,height int,weight int,sex varchar(5),education ' at line 1
+mysql> create table teacher(name varchar(20),age int,height int,weight int,sex varchar(5),education varchar(50),birthday varchar(20),ID number varchar(30));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'number varchar(30))' at line 1
+mysql> create table teacher(name varchar(20),age int,height int,weight int,sex varchar(5),education varchar(50),birthday varchar(20),ID-number varchar(30));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-number varchar(30))' at line 1
+mysql> create table teacher(name varchar(20),age int,height int,weight int,sex varchar(5),education varchar(50),birthday varchar(20),ID_number varchar(30));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc teacher;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| name      | varchar(20) | YES  |     | NULL    |       |
+| age       | int(11)     | YES  |     | NULL    |       |
+| height    | int(11)     | YES  |     | NULL    |       |
+| weight    | int(11)     | YES  |     | NULL    |       |
+| sex       | varchar(5)  | YES  |     | NULL    |       |
+| education | varchar(50) | YES  |     | NULL    |       |
+| birthday  | varchar(20) | YES  |     | NULL    |       |
+| ID_number | varchar(30) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> create table goods(goods_name varchar(50),unitprice decimal(7,2),goods_inventory varchar(50),goods_description varchar(100));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc goods;
++-------------------+--------------+------+-----+---------+-------+
+| Field             | Type         | Null | Key | Default | Extra |
++-------------------+--------------+------+-----+---------+-------+
+| goods_name        | varchar(50)  | YES  |     | NULL    |       |
+| unitprice         | decimal(7,2) | YES  |     | NULL    |       |
+| goods_inventory   | varchar(50)  | YES  |     | NULL    |       |
+| goods_description | varchar(100) | YES  |     | NULL    |       |
++-------------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into book values('Java hexinjishu','Cay S. Horstman',56.43,'jisuanjijishu');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from book;
++-----------------+-----------------+-------+---------------+
+| name            | writer          | price | kind          |
++-----------------+-----------------+-------+---------------+
+| Java hexinjishu | Cay S. Horstman | 56.43 | jisuanjijishu |
++-----------------+-----------------+-------+---------------+
+1 row in set (0.00 sec)
+
+mysql> update book set price=61 where name='Java hexinjishu';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from book;
++-----------------+-----------------+-------+---------------+
+| name            | writer          | price | kind          |
++-----------------+-----------------+-------+---------------+
+| Java hexinjishu | Cay S. Horstman | 61.00 | jisuanjijishu |
++-----------------+-----------------+-------+---------------+
+1 row in set (0.00 sec)
+
+mysql> insert into goods values('xueshengshubao',18.91,'101',NULL);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from goods;
++----------------+-----------+-----------------+-------------------+
+| goods_name     | unitprice | goods_inventory | goods_description |
++----------------+-----------+-----------------+-------------------+
+| xueshengshubao |     18.91 | 101             | NULL              |
++----------------+-----------+-----------------+-------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into goods values('gangbi',100,'260','haoyongdebi');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into goods values('bijiben',6,'50','huoyeben');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into goods values('wenjiadai',2,'300','darongliang');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from goods;
++----------------+-----------+-----------------+-------------------+
+| goods_name     | unitprice | goods_inventory | goods_description |
++----------------+-----------+-----------------+-------------------+
+| xueshengshubao |     18.91 | 101             | NULL              |
+| gangbi         |    100.00 | 260             | haoyongdebi       |
+| bijiben        |      6.00 | 50              | huoyeben          |
+| wenjiadai      |      2.00 | 300             | darongliang       |
++----------------+-----------+-----------------+-------------------+
+4 rows in set (0.00 sec)
+
+mysql> delete from goods where unitprice>=60 or goods_inventory<=200;
+Query OK, 3 rows affected (0.00 sec)
+
+mysql> select * from goods;
++------------+-----------+-----------------+-------------------+
+| goods_name | unitprice | goods_inventory | goods_description |
++------------+-----------+-----------------+-------------------+
+| wenjiadai  |      2.00 | 300             | darongliang       |
++------------+-----------+-----------------+-------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into goods values('xueshengshubao',18.91,'101',NULL);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into goods values('gangbi',100,'260','haoyongdebi');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into goods values('bijiben',6,'50','huoyeben');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from goods;
++----------------+-----------+-----------------+-------------------+
+| goods_name     | unitprice | goods_inventory | goods_description |
++----------------+-----------+-----------------+-------------------+
+| wenjiadai      |      2.00 | 300             | darongliang       |
+| xueshengshubao |     18.91 | 101             | NULL              |
+| gangbi         |    100.00 | 260             | haoyongdebi       |
+| bijiben        |      6.00 | 50              | huoyeben          |
++----------------+-----------+-----------------+-------------------+
+4 rows in set (0.00 sec)
+
+mysql> update goods set unitprice=unitprice+50 where goods_inventory>30;
+Query OK, 4 rows affected (0.01 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> insert into goods values('diannao',6000,'5','lianxiang');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from goods;
++----------------+-----------+-----------------+-------------------+
+| goods_name     | unitprice | goods_inventory | goods_description |
++----------------+-----------+-----------------+-------------------+
+| wenjiadai      |     52.00 | 300             | darongliang       |
+| xueshengshubao |     68.91 | 101             | NULL              |
+| gangbi         |    150.00 | 260             | haoyongdebi       |
+| bijiben        |     56.00 | 50              | huoyeben          |
+| diannao        |   6000.00 | 5               | lianxiang         |
++----------------+-----------+-----------------+-------------------+
+5 rows in set (0.00 sec)
+
+mysql> update goods set unitprice=unitprice-50 where goods_inventory>30;
+Query OK, 4 rows affected (0.01 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> select * from goods;
++----------------+-----------+-----------------+-------------------+
+| goods_name     | unitprice | goods_inventory | goods_description |
++----------------+-----------+-----------------+-------------------+
+| wenjiadai      |      2.00 | 300             | darongliang       |
+| xueshengshubao |     18.91 | 101             | NULL              |
+| gangbi         |    100.00 | 260             | haoyongdebi       |
+| bijiben        |      6.00 | 50              | huoyeben          |
+| diannao        |   6000.00 | 5               | lianxiang         |
++----------------+-----------+-----------------+-------------------+
+5 rows in set (0.00 sec)
+
+mysql> update goods set unitprice=unitprice+50 where goods_inventory>30;
+Query OK, 4 rows affected (0.01 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> select * from goods;
++----------------+-----------+-----------------+-------------------+
+| goods_name     | unitprice | goods_inventory | goods_description |
++----------------+-----------+-----------------+-------------------+
+| wenjiadai      |     52.00 | 300             | darongliang       |
+| xueshengshubao |     68.91 | 101             | NULL              |
+| gangbi         |    150.00 | 260             | haoyongdebi       |
+| bijiben        |     56.00 | 50              | huoyeben          |
+| diannao        |   6000.00 | 5               | lianxiang         |
++----------------+-----------+-----------------+-------------------+
+5 rows in set (0.00 sec)
+
+mysql> create table user values(ID int,accout varchar(50),amount decimal(7,2));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values(ID int,accout varchar(50),amount decimal(7,2))' at line 1
+mysql> create table user(ID int,accout varchar(50),amount decimal(7,2));
+ERROR 1050 (42S01): Table 'user' already exists
+mysql> desc tables;
+ERROR 1146 (42S02): Table 'bite0330.tables' doesn't exist
+mysql> show tables;
++--------------------+
+| Tables_in_bite0330 |
++--------------------+
+| book               |
+| class              |
+| classes            |
+| course             |
+| emp                |
+| exam_result        |
+| goods              |
+| score              |
+| student            |
+| teacher            |
+| user               |
+| user2              |
++--------------------+
+12 rows in set (0.00 sec)
+
+mysql> select * from user;
++------+------+
+| id   | name |
++------+------+
+|    1 | aaa  |
+|    2 | aaa  |
+|    3 | aaa  |
+|    4 | aaa  |
++------+------+
+4 rows in set (0.00 sec)
+
+mysql> drop table user;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table user(ID int,accout varchar(50),amount decimal(7,2));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc user;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| ID     | int(11)      | YES  |     | NULL    |       |
+| accout | varchar(50)  | YES  |     | NULL    |       |
+| amount | decimal(7,2) | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into user values(150,NULL,3000）；
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into user values(150,NULL,3000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into user values(220,'123456',980),(400,'815396',3666),(309,'098765',7900),(690,'000000',800);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from user;
++------+--------+---------+
+| ID   | accout | amount  |
++------+--------+---------+
+|  150 | NULL   | 3000.00 |
+|  220 | 123456 |  980.00 |
+|  400 | 815396 | 3666.00 |
+|  309 | 098765 | 7900.00 |
+|  690 | 000000 |  800.00 |
++------+--------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from user where (ID between 1 and 200) or(ID between 300 and 500)and accout is not NULL;
++------+--------+---------+
+| ID   | accout | amount  |
++------+--------+---------+
+|  150 | NULL   | 3000.00 |
+|  400 | 815396 | 3666.00 |
+|  309 | 098765 | 7900.00 |
++------+--------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select * from user where amount>1000;
++------+--------+---------+
+| ID   | accout | amount  |
++------+--------+---------+
+|  150 | NULL   | 3000.00 |
+|  400 | 815396 | 3666.00 |
+|  309 | 098765 | 7900.00 |
++------+--------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select * from book;
++-----------------+-----------------+-------+---------------+
+| name            | writer          | price | kind          |
++-----------------+-----------------+-------+---------------+
+| Java hexinjishu | Cay S. Horstman | 61.00 | jisuanjijishu |
++-----------------+-----------------+-------+---------------+
+1 row in set (0.00 sec)
+
+mysql> drop table book;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_bite0330 |
++--------------------+
+| class              |
+| classes            |
+| course             |
+| emp                |
+| exam_result        |
+| goods              |
+| score              |
+| student            |
+| teacher            |
+| user               |
+| user2              |
++--------------------+
+11 rows in set (0.00 sec)
+
+mysql> create table book(name varchar(50),author varchar(20),price decimal(7,2),kind varchar(20),publish_date datetime);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc book;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| name         | varchar(50)  | YES  |     | NULL    |       |
+| author       | varchar(20)  | YES  |     | NULL    |       |
+| price        | decimal(7,2) | YES  |     | NULL    |       |
+| kind         | varchar(20)  | YES  |     | NULL    |       |
+| publish_date | datetime     | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into book values(
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into book values('Java','aa',60,'jisuanji',2020),('C++','bb',40,2021),('Cyuyan',null,70,2021),('ceshi','cc',80,2018),('shujujiegou','dd');
+ERROR 1136 (21S01): Column count doesn't match value count at row 2
+mysql> insert into book values('Java','aa',60,'jisuanji',2020),('C++','bb',40,'jisuanji',2021),('Cyuyan',null,70,'biancheng',2021),('ceshi','cc',80,'jishu',2018),('shujujiegou','dd',100,'jishu',2021);
+ERROR 1292 (22007): Incorrect datetime value: '2020' for column 'publish_date' at row 1
+mysql> insert into book values('Java','aa',60,'jisuanji',2020);
+ERROR 1292 (22007): Incorrect datetime value: '2020' for column 'publish_date' at row 1
+mysql> insert into book values('Java','aa',60,'jisuanji','2020-02-09'),('C++','bb',40,'jisuanji','2021-01-04'),('Cyuyan',null,70,'biancheng','2021-10-30'),('ceshi','cc',80,'jishu','2018-01-27'),('shujujiegou','dd',100,'jishu','2019-05-20');
+Query OK, 5 rows affected (0.00 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from book;
++-------------+--------+--------+-----------+---------------------+
+| name        | author | price  | kind      | publish_date        |
++-------------+--------+--------+-----------+---------------------+
+| Java        | aa     |  60.00 | jisuanji  | 2020-02-09 00:00:00 |
+| C++         | bb     |  40.00 | jisuanji  | 2021-01-04 00:00:00 |
+| Cyuyan      | NULL   |  70.00 | biancheng | 2021-10-30 00:00:00 |
+| ceshi       | cc     |  80.00 | jishu     | 2018-01-27 00:00:00 |
+| shujujiegou | dd     | 100.00 | jishu     | 2019-05-20 00:00:00 |
++-------------+--------+--------+-----------+---------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from book where author is not null or(price>50 and publish_date>2019-01-01);
++-------------+--------+--------+-----------+---------------------+
+| name        | author | price  | kind      | publish_date        |
++-------------+--------+--------+-----------+---------------------+
+| Java        | aa     |  60.00 | jisuanji  | 2020-02-09 00:00:00 |
+| C++         | bb     |  40.00 | jisuanji  | 2021-01-04 00:00:00 |
+| Cyuyan      | NULL   |  70.00 | biancheng | 2021-10-30 00:00:00 |
+| ceshi       | cc     |  80.00 | jishu     | 2018-01-27 00:00:00 |
+| shujujiegou | dd     | 100.00 | jishu     | 2019-05-20 00:00:00 |
++-------------+--------+--------+-----------+---------------------+
+5 rows in set, 1 warning (0.00 sec)
+
+mysql> insert into book values('shujuku',null,49,'biancheng','2018-08-30');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from book;
++-------------+--------+--------+-----------+---------------------+
+| name        | author | price  | kind      | publish_date        |
++-------------+--------+--------+-----------+---------------------+
+| Java        | aa     |  60.00 | jisuanji  | 2020-02-09 00:00:00 |
+| C++         | bb     |  40.00 | jisuanji  | 2021-01-04 00:00:00 |
+| Cyuyan      | NULL   |  70.00 | biancheng | 2021-10-30 00:00:00 |
+| ceshi       | cc     |  80.00 | jishu     | 2018-01-27 00:00:00 |
+| shujujiegou | dd     | 100.00 | jishu     | 2019-05-20 00:00:00 |
+| shujuku     | NULL   |  49.00 | biancheng | 2018-08-30 00:00:00 |
++-------------+--------+--------+-----------+---------------------+
+6 rows in set (0.00 sec)
+
+mysql>  select * from book where author is not null or(price>50 and publish_date>2019-01-01);
++-------------+--------+--------+-----------+---------------------+
+| name        | author | price  | kind      | publish_date        |
++-------------+--------+--------+-----------+---------------------+
+| Java        | aa     |  60.00 | jisuanji  | 2020-02-09 00:00:00 |
+| C++         | bb     |  40.00 | jisuanji  | 2021-01-04 00:00:00 |
+| Cyuyan      | NULL   |  70.00 | biancheng | 2021-10-30 00:00:00 |
+| ceshi       | cc     |  80.00 | jishu     | 2018-01-27 00:00:00 |
+| shujujiegou | dd     | 100.00 | jishu     | 2019-05-20 00:00:00 |
++-------------+--------+--------+-----------+---------------------+
+5 rows in set, 1 warning (0.00 sec)
+
+mysql> select * from book where author is not null or(price>50 and publish_date>2019-12-31);
++-------------+--------+--------+-----------+---------------------+
+| name        | author | price  | kind      | publish_date        |
++-------------+--------+--------+-----------+---------------------+
+| Java        | aa     |  60.00 | jisuanji  | 2020-02-09 00:00:00 |
+| C++         | bb     |  40.00 | jisuanji  | 2021-01-04 00:00:00 |
+| Cyuyan      | NULL   |  70.00 | biancheng | 2021-10-30 00:00:00 |
+| ceshi       | cc     |  80.00 | jishu     | 2018-01-27 00:00:00 |
+| shujujiegou | dd     | 100.00 | jishu     | 2019-05-20 00:00:00 |
++-------------+--------+--------+-----------+---------------------+
+5 rows in set, 1 warning (0.00 sec)
+
+mysql> select * from book;
++-------------+--------+--------+-----------+---------------------+
+| name        | author | price  | kind      | publish_date        |
++-------------+--------+--------+-----------+---------------------+
+| Java        | aa     |  60.00 | jisuanji  | 2020-02-09 00:00:00 |
+| C++         | bb     |  40.00 | jisuanji  | 2021-01-04 00:00:00 |
+| Cyuyan      | NULL   |  70.00 | biancheng | 2021-10-30 00:00:00 |
+| ceshi       | cc     |  80.00 | jishu     | 2018-01-27 00:00:00 |
+| shujujiegou | dd     | 100.00 | jishu     | 2019-05-20 00:00:00 |
+| shujuku     | NULL   |  49.00 | biancheng | 2018-08-30 00:00:00 |
++-------------+--------+--------+-----------+---------------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from book where author is not null or(price>50 and publish_date>2019-12-31);
++-------------+--------+--------+-----------+---------------------+
+| name        | author | price  | kind      | publish_date        |
++-------------+--------+--------+-----------+---------------------+
+| Java        | aa     |  60.00 | jisuanji  | 2020-02-09 00:00:00 |
+| C++         | bb     |  40.00 | jisuanji  | 2021-01-04 00:00:00 |
+| Cyuyan      | NULL   |  70.00 | biancheng | 2021-10-30 00:00:00 |
+| ceshi       | cc     |  80.00 | jishu     | 2018-01-27 00:00:00 |
+| shujujiegou | dd     | 100.00 | jishu     | 2019-05-20 00:00:00 |
++-------------+--------+--------+-----------+---------------------+
+5 rows in set, 1 warning (0.00 sec)
+
+mysql> insert into book values('xiangmuguanli',null,80,2020-01-01);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into book values('xiangmuguanli',null,80,'guanli',2020-01-01);
+ERROR 1292 (22007): Incorrect datetime value: '2018' for column 'publish_date' at row 1
+mysql> insert into book values('xiangmuguanli',null,80,'guanli','2020-01-01');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from book where author is not null or(price>50 and publish_date>2019-12-31);
++---------------+--------+--------+-----------+---------------------+
+| name          | author | price  | kind      | publish_date        |
++---------------+--------+--------+-----------+---------------------+
+| Java          | aa     |  60.00 | jisuanji  | 2020-02-09 00:00:00 |
+| C++           | bb     |  40.00 | jisuanji  | 2021-01-04 00:00:00 |
+| Cyuyan        | NULL   |  70.00 | biancheng | 2021-10-30 00:00:00 |
+| ceshi         | cc     |  80.00 | jishu     | 2018-01-27 00:00:00 |
+| shujujiegou   | dd     | 100.00 | jishu     | 2019-05-20 00:00:00 |
+| xiangmuguanli | NULL   |  80.00 | guanli    | 2020-01-01 00:00:00 |
++---------------+--------+--------+-----------+---------------------+
+6 rows in set, 1 warning (0.00 sec)
+
+mysql> insert into book values('xiangmuguanli',null,80,'guanli','2019-01-01');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from book where author is not null or(price>50 and publish_date>2019-12-31);
++---------------+--------+--------+-----------+---------------------+
+| name          | author | price  | kind      | publish_date        |
++---------------+--------+--------+-----------+---------------------+
+| Java          | aa     |  60.00 | jisuanji  | 2020-02-09 00:00:00 |
+| C++           | bb     |  40.00 | jisuanji  | 2021-01-04 00:00:00 |
+| Cyuyan        | NULL   |  70.00 | biancheng | 2021-10-30 00:00:00 |
+| ceshi         | cc     |  80.00 | jishu     | 2018-01-27 00:00:00 |
+| shujujiegou   | dd     | 100.00 | jishu     | 2019-05-20 00:00:00 |
+| xiangmuguanli | NULL   |  80.00 | guanli    | 2020-01-01 00:00:00 |
+| xiangmuguanli | NULL   |  80.00 | guanli    | 2019-01-01 00:00:00 |
++---------------+--------+--------+-----------+---------------------+
+7 rows in set, 1 warning (0.00 sec)
+
+mysql> select * from book where author is not null or(price>50 and publish_date>'2019-12-31');
++---------------+--------+--------+-----------+---------------------+
+| name          | author | price  | kind      | publish_date        |
++---------------+--------+--------+-----------+---------------------+
+| Java          | aa     |  60.00 | jisuanji  | 2020-02-09 00:00:00 |
+| C++           | bb     |  40.00 | jisuanji  | 2021-01-04 00:00:00 |
+| Cyuyan        | NULL   |  70.00 | biancheng | 2021-10-30 00:00:00 |
+| ceshi         | cc     |  80.00 | jishu     | 2018-01-27 00:00:00 |
+| shujujiegou   | dd     | 100.00 | jishu     | 2019-05-20 00:00:00 |
+| xiangmuguanli | NULL   |  80.00 | guanli    | 2020-01-01 00:00:00 |
++---------------+--------+--------+-----------+---------------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from book;
++---------------+--------+--------+-----------+---------------------+
+| name          | author | price  | kind      | publish_date        |
++---------------+--------+--------+-----------+---------------------+
+| Java          | aa     |  60.00 | jisuanji  | 2020-02-09 00:00:00 |
+| C++           | bb     |  40.00 | jisuanji  | 2021-01-04 00:00:00 |
+| Cyuyan        | NULL   |  70.00 | biancheng | 2021-10-30 00:00:00 |
+| ceshi         | cc     |  80.00 | jishu     | 2018-01-27 00:00:00 |
+| shujujiegou   | dd     | 100.00 | jishu     | 2019-05-20 00:00:00 |
+| shujuku       | NULL   |  49.00 | biancheng | 2018-08-30 00:00:00 |
+| xiangmuguanli | NULL   |  80.00 | guanli    | 2020-01-01 00:00:00 |
+| xiangmuguanli | NULL   |  80.00 | guanli    | 2019-01-01 00:00:00 |
++---------------+--------+--------+-----------+---------------------+
+8 rows in set (0.00 sec)
+
+mysql> mysql> select * from book where author is not null or(price>50 and publish_date>'2019-12-31');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'mysql> select * from book where author is not null or(price>50 and publish_date>' at line 1
+mysql> select * from book;
++---------------+--------+--------+-----------+---------------------+
+| name          | author | price  | kind      | publish_date        |
++---------------+--------+--------+-----------+---------------------+
+| Java          | aa     |  60.00 | jisuanji  | 2020-02-09 00:00:00 |
+| C++           | bb     |  40.00 | jisuanji  | 2021-01-04 00:00:00 |
+| Cyuyan        | NULL   |  70.00 | biancheng | 2021-10-30 00:00:00 |
+| ceshi         | cc     |  80.00 | jishu     | 2018-01-27 00:00:00 |
+| shujujiegou   | dd     | 100.00 | jishu     | 2019-05-20 00:00:00 |
+| shujuku       | NULL   |  49.00 | biancheng | 2018-08-30 00:00:00 |
+| xiangmuguanli | NULL   |  80.00 | guanli    | 2020-01-01 00:00:00 |
+| xiangmuguanli | NULL   |  80.00 | guanli    | 2019-01-01 00:00:00 |
++---------------+--------+--------+-----------+---------------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from book where author is not null or(price>50 and publish_date>'2019-12-31');
++---------------+--------+--------+-----------+---------------------+
+| name          | author | price  | kind      | publish_date        |
++---------------+--------+--------+-----------+---------------------+
+| Java          | aa     |  60.00 | jisuanji  | 2020-02-09 00:00:00 |
+| C++           | bb     |  40.00 | jisuanji  | 2021-01-04 00:00:00 |
+| Cyuyan        | NULL   |  70.00 | biancheng | 2021-10-30 00:00:00 |
+| ceshi         | cc     |  80.00 | jishu     | 2018-01-27 00:00:00 |
+| shujujiegou   | dd     | 100.00 | jishu     | 2019-05-20 00:00:00 |
+| xiangmuguanli | NULL   |  80.00 | guanli    | 2020-01-01 00:00:00 |
++---------------+--------+--------+-----------+---------------------+
+6 rows in set (0.00 sec)
+
+mysql> create table article(title varchar(50),create_date datetime,author varchar(20));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc article;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| title       | varchar(50) | YES  |     | NULL    |       |
+| create_date | datetime    | YES  |     | NULL    |       |
+| author      | varchar(20) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into article values('java','2018-01-27 12:30');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into article values('java','2018-01-27 12:30','xx');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from article;
++-------+---------------------+--------+
+| title | create_date         | author |
++-------+---------------------+--------+
+| java  | 2018-01-27 12:30:00 | xx     |
++-------+---------------------+--------+
+1 row in set (0.00 sec)
+
+mysql> insert into article values('cyuyan','2019-10-30 19:04','yy'),(null,'2020-07-04 17:57','aa'),('shujujiegou','2017-09-15 8:45','bb'),('shujuku','2019-05-20 13:14','cc'),('web','2021-02-14 10:25'.'dd'),(null,'2019-07-30 06:30','ee'),('ceshi','2018-10-16 10:04','jj');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.'dd'),(null,'2019-07-30 06:30','ee'),('ceshi','2018-10-16 10:04','jj')' at line 1
+mysql> insert into article values('cyuyan','2019-10-30 19:04','yy'),(null,'2020-07-04 17:57','aa'),('shujujiegou','2017-09-15 8:45','bb'),('shujuku','2019-05-20 13:14','cc'),('web','2021-02-14 10:25','dd'),(null,'2019-07-30 06:30','ee'),('ceshi','2018-10-16 10:04','jj');
+Query OK, 7 rows affected (0.01 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from article;
++-------------+---------------------+--------+
+| title       | create_date         | author |
++-------------+---------------------+--------+
+| java        | 2018-01-27 12:30:00 | xx     |
+| cyuyan      | 2019-10-30 19:04:00 | yy     |
+| NULL        | 2020-07-04 17:57:00 | aa     |
+| shujujiegou | 2017-09-15 08:45:00 | bb     |
+| shujuku     | 2019-05-20 13:14:00 | cc     |
+| web         | 2021-02-14 10:25:00 | dd     |
+| NULL        | 2019-07-30 06:30:00 | ee     |
+| ceshi       | 2018-10-16 10:04:00 | jj     |
++-------------+---------------------+--------+
+8 rows in set (0.00 sec)
+
+mysql> select * from title is null or create_date>'2019-01-01';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'is null or create_date>'2019-01-01'' at line 1
+mysql> select * from title=null or create_date>'2019-01-01';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'null or create_date>'2019-01-01'' at line 1
+mysql> select * from article where title is NULL or create_date>'2019-01-01';
++---------+---------------------+--------+
+| title   | create_date         | author |
++---------+---------------------+--------+
+| cyuyan  | 2019-10-30 19:04:00 | yy     |
+| NULL    | 2020-07-04 17:57:00 | aa     |
+| shujuku | 2019-05-20 13:14:00 | cc     |
+| web     | 2021-02-14 10:25:00 | dd     |
+| NULL    | 2019-07-30 06:30:00 | ee     |
++---------+---------------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from article;
++-------------+---------------------+--------+
+| title       | create_date         | author |
++-------------+---------------------+--------+
+| java        | 2018-01-27 12:30:00 | xx     |
+| cyuyan      | 2019-10-30 19:04:00 | yy     |
+| NULL        | 2020-07-04 17:57:00 | aa     |
+| shujujiegou | 2017-09-15 08:45:00 | bb     |
+| shujuku     | 2019-05-20 13:14:00 | cc     |
+| web         | 2021-02-14 10:25:00 | dd     |
+| NULL        | 2019-07-30 06:30:00 | ee     |
+| ceshi       | 2018-10-16 10:04:00 | jj     |
++-------------+---------------------+--------+
+8 rows in set (0.00 sec)
+
+mysql>  select * from article where title is NULL or create_date>'2019-01-01';
++---------+---------------------+--------+
+| title   | create_date         | author |
++---------+---------------------+--------+
+| cyuyan  | 2019-10-30 19:04:00 | yy     |
+| NULL    | 2020-07-04 17:57:00 | aa     |
+| shujuku | 2019-05-20 13:14:00 | cc     |
+| web     | 2021-02-14 10:25:00 | dd     |
+| NULL    | 2019-07-30 06:30:00 | ee     |
++---------+---------------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from article;
++-------------+---------------------+--------+
+| title       | create_date         | author |
++-------------+---------------------+--------+
+| java        | 2018-01-27 12:30:00 | xx     |
+| cyuyan      | 2019-10-30 19:04:00 | yy     |
+| NULL        | 2020-07-04 17:57:00 | aa     |
+| shujujiegou | 2017-09-15 08:45:00 | bb     |
+| shujuku     | 2019-05-20 13:14:00 | cc     |
+| web         | 2021-02-14 10:25:00 | dd     |
+| NULL        | 2019-07-30 06:30:00 | ee     |
+| ceshi       | 2018-10-16 10:04:00 | jj     |
++-------------+---------------------+--------+
+8 rows in set (0.00 sec)
+
+mysql> select * from article where create_date between '2019-01-01 10:30'and'2019-11-10 16:02';
++---------+---------------------+--------+
+| title   | create_date         | author |
++---------+---------------------+--------+
+| cyuyan  | 2019-10-30 19:04:00 | yy     |
+| shujuku | 2019-05-20 13:14:00 | cc     |
+| NULL    | 2019-07-30 06:30:00 | ee     |
++---------+---------------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student;
++----+-------+---------------+------------------+------------+
+| id | sn    | name          | qq_mail          | classes_id |
++----+-------+---------------+------------------+------------+
+|  1 | 09982 | likui         | xuanfeng@qq.com  |          1 |
+|  2 | 00835 | puti          | NULL             |          1 |
+|  3 | 00391 | baisuzhen     | NULL             |          1 |
+|  4 | 00031 | xuxian        | xuxian@qq.com    |          1 |
+|  5 | 00054 | buxiangbiye   | NULL             |          1 |
+|  6 | 51234 | haohaoshuohua | say@qq.com       |          2 |
+|  7 | 83223 | tellme        | NULL             |          2 |
+|  8 | 09527 | laowai        | foreigner@qq.com |          2 |
++----+-------+---------------+------------------+------------+
+8 rows in set (0.01 sec)
+
+mysql> create table Student(name varchar(20),age int,class_id int);
+ERROR 1050 (42S01): Table 'student' already exists
+mysql> show tables;
++--------------------+
+| Tables_in_bite0330 |
++--------------------+
+| article            |
+| book               |
+| class              |
+| classes            |
+| course             |
+| emp                |
+| exam_result        |
+| goods              |
+| score              |
+| student            |
+| teacher            |
+| user               |
+| user2              |
++--------------------+
+13 rows in set (0.00 sec)
+
+mysql> create table students(name varchar(20),age int,class_id int);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc students;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| name     | varchar(20) | YES  |     | NULL    |       |
+| age      | int(11)     | YES  |     | NULL    |       |
+| class_id | int(11)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into students values('zhangyanqi',23,7);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from students;
++------------+------+----------+
+| name       | age  | class_id |
++------------+------+----------+
+| zhangyanqi |   23 |        7 |
++------------+------+----------+
+1 row in set (0.00 sec)
+
+mysql> insert into students values('zhangzining',25,3),('chenxin',21,4),('xiaoming',17,2),('zhangbichen',26,1);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from students;
++-------------+------+----------+
+| name        | age  | class_id |
++-------------+------+----------+
+| zhangyanqi  |   23 |        7 |
+| zhangzining |   25 |        3 |
+| chenxin     |   21 |        4 |
+| xiaoming    |   17 |        2 |
+| zhangbichen |   26 |        1 |
++-------------+------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from students where name like 'zhang%' and age between 18 and 25;
++-------------+------+----------+
+| name        | age  | class_id |
++-------------+------+----------+
+| zhangyanqi  |   23 |        7 |
+| zhangzining |   25 |        3 |
++-------------+------+----------+
+2 rows in set (0.00 sec)
