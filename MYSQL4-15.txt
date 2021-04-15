@@ -1,0 +1,248 @@
+>  create database zuoye0415;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> use zuoye0415;
+Database changed
+mysql> create table dining_hall(name varchar(50),id int primary key anto_increment);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'anto_increment)' at line 1
+mysql> create table dining_hall(name varchar(50),id int primary key auto_increment);
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> create table dining_room(id int primary key auto_increment,room int,dining_hall_id int,foreign key (dining_hall_id) references dining_hall(id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table hall(id int primary key auto_increment,name varchar(50));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table room(capacity int,hall_id int);
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> drop table room;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> drop table hall;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table hall(name varchar(50) primary key auto_increment,id int);
+ERROR 1063 (42000): Incorrect column specifier for column 'name'
+mysql> create table hall(id int,name varchar(50) primary key auto_increment);
+ERROR 1063 (42000): Incorrect column specifier for column 'name'
+mysql> create table hall(id int primary key auto_increment,name varchar(50));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> create table room(id int primary key auto_increment,kind varchar(50));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> create table charge(price decimal(3,1),hall_id int,room_id int);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc room;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| kind  | varchar(50) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.05 sec)
+
+mysql> desc hall;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(50) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.01 sec)
+
+mysql> desc charge;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| price   | decimal(3,1) | YES  |     | NULL    |       |
+| hall_id | int(11)      | YES  |     | NULL    |       |
+| room_id | int(11)      | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> drop table room;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table room(id int primary key auto_increment,kind varchar(20),hall_id int,foreign key (hall_id) references hall(id));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> drop table charge;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table charge(id int primary key auto_increment,price decimal(3,1),room_id int,foreig key (room_id)references room (id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'key (room_id)references room (id))' at line 1
+mysql> create table charge(id int primary key auto_increment,price decimal(3,1),room_id int,foreign key (room_id)references room (id));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc hall;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(50) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> desc room;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| id      | int(11)     | NO   | PRI | NULL    | auto_increment |
+| kind    | varchar(20) | YES  |     | NULL    |                |
+| hall_id | int(11)     | YES  | MUL | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+3 rows in set (0.01 sec)
+
+mysql> desc charge;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| price   | decimal(3,1) | YES  |     | NULL    |                |
+| room_id | int(11)      | YES  | MUL | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> create table user(id int primary auto_increment,name varchar(50));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'auto_increment,name varchar(50))' at line 1
+mysql> create table user(id int primary key auto_increment,name varchar(50));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> creste table car(id int primary key auto_increment,name varchar(50),user_id int,foreign key(user_id) reference user(id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'creste table car(id int primary key auto_increment,name varchar(50),user_id int,' at line 1
+mysql> create table car(id int primary key auto_increment,name varchar(50),user_id int,foreign key(user_id) reference user(id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'reference user(id))' at line 1
+mysql> create table car(id int primary key auto_increment,name varchar(50),user_id int,foreign key(user_id) references user(id));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> create table rule_breaking(id int primary key auto_increment,note varchar(100),user_id int,car_id int,foreign key(user_id) references user(id),foreign key(car_id) references car(id));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc user;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(50) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.01 sec)
+
+mysql> desc car;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| id      | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name    | varchar(50) | YES  |     | NULL    |                |
+| user_id | int(11)     | YES  | MUL | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> desc rule_breaking;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| note    | varchar(100) | YES  |     | NULL    |                |
+| user_id | int(11)      | YES  | MUL | NULL    |                |
+| car_id  | int(11)      | YES  | MUL | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> create table dorm(id inr primary key auto_increment,number int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'inr primary key auto_increment,number int)' at line 1
+mysql> create table dorm(id int primary key auto_increment,number int);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> create table students(id int primary key auto_increment,name varchar(20),dorm_id int,foreign key (dorm_id) references dorm(id));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> create table dorm_checking(id inr primary key auto_increment,note varchar(100),dorm_id int,foreign key (dorm_id) references dorm(id),students_id int,foreign key (students_id) references students(id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'inr primary key auto_increment,note varchar(100),dorm_id int,foreign key (dorm_i' at line 1
+mysql> create table dorm_checking(id intprimary key auto_increment,note varchar(100),dorm_id int,foreign key (dorm_id) references dorm(id),students_id int,foreign key (students_id) references students(id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'intprimary key auto_increment,note varchar(100),dorm_id int,foreign key (dorm_id' at line 1
+mysql> cprimary key auto_increment,note varchar(100),dorm_id int,foreign key (dorm_id) references dorm(id),students_id int,foreign key (students_id) references students(id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'cprimary key auto_increment,note varchar(100),dorm_id int,foreign key (dorm_id) ' at line 1
+mysql> create table dorm_checking(id int primary key auto_increment,note varchar(100),dorm_id int,foreign key (dorm_id) references dorm(id),students_id int,foreign key (students_id) references students(id));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc dorm;
++--------+---------+------+-----+---------+----------------+
+| Field  | Type    | Null | Key | Default | Extra          |
++--------+---------+------+-----+---------+----------------+
+| id     | int(11) | NO   | PRI | NULL    | auto_increment |
+| number | int(11) | YES  |     | NULL    |                |
++--------+---------+------+-----+---------+----------------+
+2 rows in set (0.01 sec)
+
+mysql> desc students;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| id      | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name    | varchar(20) | YES  |     | NULL    |                |
+| dorm_id | int(11)     | YES  | MUL | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+3 rows in set (0.01 sec)
+
+mysql> desc dorm_checking;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int(11)      | NO   | PRI | NULL    | auto_increment |
+| note        | varchar(100) | YES  |     | NULL    |                |
+| dorm_id     | int(11)      | YES  | MUL | NULL    |                |
+| students_id | int(11)      | YES  | MUL | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.01 sec)
+
+mysql> create table workers(id int primary key auto_increment,name varchar(20));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> create table checking_in(id int primary key auto_increment,note varchar(50),workers_id int,foreign (workers_id) references workers(id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(workers_id) references workers(id))' at line 1
+mysql> create table checking_in(id int primary key auto_increment,note varchar(50),workers_id int,foreign key (workers_id) references workers(id));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc workers;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(20) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.01 sec)
+
+mysql> desc checking_in;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int(11)     | NO   | PRI | NULL    | auto_increment |
+| note       | varchar(50) | YES  |     | NULL    |                |
+| workers_id | int(11)     | YES  | MUL | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> drop table checking_in;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> create table checking_in(id int primary key auto_increment,workers_id int,foreign key (workers_id) references workers(id));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc checking_in;
++------------+---------+------+-----+---------+----------------+
+| Field      | Type    | Null | Key | Default | Extra          |
++------------+---------+------+-----+---------+----------------+
+| id         | int(11) | NO   | PRI | NULL    | auto_increment |
+| workers_id | int(11) | YES  | MUL | NULL    |                |
++------------+---------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> create table emp(name varchar(20),sex int,depa varchar(50),salary deciaml(100,2));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'deciaml(100,2))' at line 1
+mysql> create table emp(name varchar(20),sex int,depa varchar(50),salary decimal(100,2));
+ERROR 1426 (42000): Too-big precision 100 specified for 'salary'. Maximum is 65.
+mysql> create table emp(name varchar(20),sex int,depa varchar(50),salary decimal(10,2));
+Query OK, 0 rows affected (0.11 sec)
