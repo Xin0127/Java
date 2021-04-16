@@ -1,0 +1,119 @@
+mysql> use zuoye0415;
+Database changed
+mysql> desc emp;
++--------+---------------+------+-----+---------+-------+
+| Field  | Type          | Null | Key | Default | Extra |
++--------+---------------+------+-----+---------+-------+
+| name   | varchar(20)   | YES  |     | NULL    |       |
+| sex    | int(11)       | YES  |     | NULL    |       |
+| depa   | varchar(50)   | YES  |     | NULL    |       |
+| salary | decimal(10,2) | YES  |     | NULL    |       |
++--------+---------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into emp values('xinxin',1,'ceshi',24000),('xiaohong',1,'kuaiji',8000),('xiaoli',1,'kaifa',27000),('xiaowang',0,'ceshi',19000),('xiaoyu',0,'kuaiji',9000),('xiaogang',0,'kaifa',28000),('xiaowang',0,'kaifa',30000);
+Query OK, 7 rows affected (0.01 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from emp;
++----------+------+--------+----------+
+| name     | sex  | depa   | salary   |
++----------+------+--------+----------+
+| xinxin   |    1 | ceshi  | 24000.00 |
+| xiaohong |    1 | kuaiji |  8000.00 |
+| xiaoli   |    1 | kaifa  | 27000.00 |
+| xiaowang |    0 | ceshi  | 19000.00 |
+| xiaoyu   |    0 | kuaiji |  9000.00 |
+| xiaogang |    0 | kaifa  | 28000.00 |
+| xiaowang |    0 | kaifa  | 30000.00 |
++----------+------+--------+----------+
+7 rows in set (0.00 sec)
+
+mysql> select sex,avg(salary) from emp group by sex;
++------+--------------+
+| sex  | avg(salary)  |
++------+--------------+
+|    0 | 21500.000000 |
+|    1 | 19666.666667 |
++------+--------------+
+2 rows in set (0.00 sec)
+
+mysql> select depart,sum(salary) from emp group by depart;
+ERROR 1054 (42S22): Unknown column 'depart' in 'field list'
+mysql> drop from emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from emp' at line 1
+mysql> drop table emp;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table emp(name varchar(20),sex int,depart varchar(50),salary decimal(10,1));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into emp values('xinxin',1,'ceshi',24000),('xiaohong',1,'kuaiji',8000),('xiaoli',1,'kaifa',27000),('xiaowang',0,'ceshi',19000),('xiaoyu',0,'kuaiji',9000),('xiaogang',0,'kaifa',28000),('xiaowang',0,'kaifa',30000);
+Query OK, 7 rows affected (0.01 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from emp;
++----------+------+--------+---------+
+| name     | sex  | depart | salary  |
++----------+------+--------+---------+
+| xinxin   |    1 | ceshi  | 24000.0 |
+| xiaohong |    1 | kuaiji |  8000.0 |
+| xiaoli   |    1 | kaifa  | 27000.0 |
+| xiaowang |    0 | ceshi  | 19000.0 |
+| xiaoyu   |    0 | kuaiji |  9000.0 |
+| xiaogang |    0 | kaifa  | 28000.0 |
+| xiaowang |    0 | kaifa  | 30000.0 |
++----------+------+--------+---------+
+7 rows in set (0.00 sec)
+
+mysql> select sex,avg(salary) from emp group by sex;
++------+-------------+
+| sex  | avg(salary) |
++------+-------------+
+|    0 | 21500.00000 |
+|    1 | 19666.66667 |
++------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select depart,sum(salary) from emp group by depart;
++--------+-------------+
+| depart | sum(salary) |
++--------+-------------+
+| ceshi  |     43000.0 |
+| kaifa  |     85000.0 |
+| kuaiji |     17000.0 |
++--------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select depart,sum(salary) from emp group by depart order by sum(salary) desc limit 1,1;
++--------+-------------+
+| depart | sum(salary) |
++--------+-------------+
+| ceshi  |     43000.0 |
++--------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select * from emp group by name having count(name)>1;
++----------+------+--------+---------+
+| name     | sex  | depart | salary  |
++----------+------+--------+---------+
+| xiaowang |    0 | ceshi  | 19000.0 |
++----------+------+--------+---------+
+1 row in set (0.01 sec)
+
+mysql> select name from emp group by name having count(name)>1;
++----------+
+| name     |
++----------+
+| xiaowang |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select depart,avg(salary) from emp where salary>10000.0 and sex=0 group by depart;
++--------+-------------+
+| depart | avg(salary) |
++--------+-------------+
+| ceshi  | 19000.00000 |
+| kaifa  | 29000.00000 |
++--------+-------------+
+2 rows in set (0.04 sec)
