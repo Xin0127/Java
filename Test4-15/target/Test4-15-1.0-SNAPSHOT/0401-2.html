@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        let articles=[{
+            title:"我的第一篇博客",
+            content:"学习JavaScript"
+        },{
+            title:"我的第2篇博客",
+            content:"学习JavaScript"
+        }];
+        console.log(articles);
+        console.log(JSON.stringify(articles));
+        function c(x) {
+            alert(x)
+        }
+    </script>
+</head>
+<body>
+<input type="button" onclick="alert(123)" value="点我">
+<input type="button" onclick="c(123)" value="点我">
+<input type="text" onblur="c('ok')">
+<form action="xxx">
+    用户名:<input type="text" name="username"><br>
+    密码:<input type="password" name="password"><br>
+    <input type="submit" value="登录">
+</form>
+</body>
+</html>
