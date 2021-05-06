@@ -1,0 +1,16 @@
+Xshell 6 (Build 0197)
+Copyright (c) 2002 NetSarang Computer, Inc. All rights reserved.
+
+Type `help' to learn how to use Xshell prompt.
+[C:\~]$ 
+
+Connecting to 106.52.65.117:22...
+Connection established.
+To escape to local shell, press Ctrl+Alt+].
+
+WARNING! The remote SSH server rejected X11 forwarding request.
+Last failed login: Thu May  6 19:26:50 CST 2021 from 193.112.140.108 on ssh:notty
+There were 94 failed login attempts since the last successful login.
+Last login: Thu May  6 19:15:53 2021 from 123.139.235.151
+[root@VM-0-9-centos ~]# echo ok
+ok
