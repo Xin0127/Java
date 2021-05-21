@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/heater_dpxs"
+        android:layout_width="20dp"
+        android:layout_height="30dp"
+
+        android:src="@drawable/dp_dark"/>
+
+    <Button
+        android:id="@+id/btn_heater_cold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/appliance_press"
+        android:text="冷水"/>
+
+    <Button
+        android:id="@+id/btn_heater_washing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/appliance_press"
+        android:text="洗衣" />
+    <Button
+        android:id="@+id/btn_heater_shower"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/appliance_press"
+        android:text="沐浴" />
+</LinearLayout>

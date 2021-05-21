@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="goldenrod">#daa520</color>
+    <color name="forestgreen">#00FF7F</color>
+    <color name="royalblue">#8A2BE2</color>
+    <color name="bg_tab">#DFD5A155</color>
+    <color name="bg_tab_selected">#BCE8BC7C</color>
+    <color name="bg_tab_security">#AD596C7C</color>
+    <color name="bg_tab_security_checked">#B93C4851</color>
+    <color name="bg_tab_appliance">#AEAEA9A9</color>
+    <color name="bg_tab_appliance_checked">#DADFD8D8</color>
+    <color name="bg_tab_wind">#AD9CE4EC</color>
+    <color name="bg_tab_wind_checked">#BE7AC5CD</color>
+</resources>

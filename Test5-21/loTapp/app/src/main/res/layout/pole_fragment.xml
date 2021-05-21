@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/pole_dpxs"
+        android:layout_width="20dp"
+        android:layout_height="30dp"
+        android:src="@drawable/dp_dark"/>
+
+    <Button
+        android:id="@+id/btn_sun_pole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/wind_press"
+        android:text="暴晒"/>
+
+    <Button
+        android:id="@+id/btn_dry_pole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/wind_press"
+        android:text="阴干" />
+
+    <Button
+        android:id="@+id/btn_up_pole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/wind_press"
+        android:text="上升" />
+    <Button
+        android:id="@+id/btn_down_pole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/wind_press"
+        android:text="下降" />
+
+
+
+
+    <Button
+        android:id="@+id/time_select_pole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/wind_press"
+        android:text="自动"/>
+
+
+
+</LinearLayout>
+

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    android:shape="oval"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#DDEFA449"/>
+    <size android:height="25dp" android:width="25dp"/>
+
+    <!--android:shape="oval"形状为椭圆-->
+    <!--<solid android:color="@color/colorAccent"/>填充内部颜色-->
+    <!--    <size android:height="5dp" android:width="5dp"/>圖形的大小-->
+</shape>
